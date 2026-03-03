@@ -15,24 +15,24 @@ int main () {
 		printf("Inserire 1 o 2 e il numero di colonna (0-6): ");
 		if (scanf("%d", &t) == 1 && scanf("%d", &c) == 1) {
 
-			if (t < 0 || t > 2 || c < 0 || c > rows) {
+			if (t < 1 || t > 2 || c < 0 || c >= cols) {
 				printf("Numero non valido\n");
 			}
 			else {
 				int r = rows-1;
-				while (r >= 0 && m[r][c] == 1 || m[r][c] == 2) {
+				while (r >= 0 && m[r][c] != 0) {
 					r--;
 				}
 				m[r][c] = t;
 				print_m(rows, cols, m);
-				for(size_t i = 0; i < cols; ++i) {
+				for(size_t i = 0; i < cols - 3; ++i) {
 					if(m[r][i] == m[r][i+1] && m[r][i+1] == m[r][i+2] && m[r][i+2] == m[r][i+3] && m[r][i] != 0) {
 						gameover = true;
 						printf("Ha vinto %d\n", m[r][i]);
 						break;
 					}
 				}
-				for(size_t i = 0; i < rows; ++i) {
+				for(size_t i = 0; i < rows - 3; ++i) {
 					if(m[i][c] == m[i+1][c] && m[i+1][c] == m[i+2][c] && m[i+2][c] == m[i+3][c] && m[i][c] != 0) {
 						gameover = true;
 						printf("Ha vinto %d\n", m[i][c]);
